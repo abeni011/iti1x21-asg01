@@ -9,9 +9,6 @@
  */
 public class TicTacToe {
 
-  // FINISH THE VARIABLE DECLARATION
-  // then remove this comment
-
   /**
    * The internal representation of the board
    * as a one dimensional array, but visualized
@@ -29,48 +26,55 @@ public class TicTacToe {
    *  9  | 10  | 11 | 12
    *
    */
-  board;
+  CellValue[] board; /**empty array of cell values
 
   /**
    * The number of rows in your grid.
    */
-  numRows;
+  int numRows;
 
   /**
    * The number of columns in your grid.
    */
-  numColumns;
+  int numColumns;
 
   /**
    * How many rounds have the players played so far.
    */
-  numRounds;
+  int numRounds;
 
   /**
    * What is the current state of the game
    */
-  gameState;
+  GameState gameState; /**given by GameState class
 
   /**
    * How many cells of the same type must be
    * aligned (vertically, horizontally, or diagonally)
    * to determine a winner of the game
    */
-  sizeToWin;
+  int sizeToWin;
 
   /**
    * Who is the current player?
    */
-  currentPlayer;
+  char currentPlayer; 
+  /**x for first, o for second
 
 
   /**
    * The default empty constructor.  The default game
    * should be a 3x3 grid with 3 cells in a row to win.
    */
-  public TicTacToe() {
-
-    // YOUR CODE HERE
+  public TicTacToeConstruct() {
+	
+	  board = CellValue[8];
+	  /**9 entries board */
+	  for (i=0; i<=8; i++){
+		  board[i] = CellValue.EMPTY;
+	  }
+	  /**all board cells are empty**/
+	  
 
   }
 
@@ -83,9 +87,9 @@ public class TicTacToe {
    * @param aSizeToWin the number of cells that must be aligned to win.
    */
   public TicTacToe(int aNumRows, int aNumColumns, int aSizeToWin) {
-
-    // YOUR CODE HERE
-
+	  this.aNumRows = 3;
+	  this.aNumColumns = 3;
+	  this.sizeToWin = 3;
   }
 
   /**
@@ -97,8 +101,15 @@ public class TicTacToe {
    * @return The player that should play next.
    */
   public CellValue nextPlayer() {
-
-    // YOUR CODE HERE
+	for (int i = 0; i <=8; i++){
+		if (i%2==0){
+			nextPlayer = CellValue.X;
+			else{
+				nextPlayer = CellValue.O;
+			}
+		}
+		return nextPlayer;
+	}	          			  
 
   }
 
@@ -120,8 +131,15 @@ public class TicTacToe {
    * @return The CellValue at that position
    */
   public CellValue valueAt(int position) {
-
-    // YOUR CODE HERE
+	  valueAt = CellValue[8];
+	  int i = position - 1;
+	  if (position > 9){
+		  valueAt[i] = CellValue.INVALID;
+	  }
+	  else {
+		  valueAt[i] = nextPlayer; 
+	  }
+	  return valueAt[i];
 
   }
 
@@ -143,8 +161,39 @@ public class TicTacToe {
    */
   public CellValue valueAt(int row, int column) {
 
-    // YOUR CODE HERE
-
+    if (row == 1){
+		if (column == 1){
+			return valueAt[0];
+			else if (column == 2){
+			    return valueAt[1];
+			}
+			else {
+            	return valueAt[2];
+            }
+		}
+    else if (row == 2){
+		if (column == 1){
+			return valueAt[3];
+			else if (column == 2){
+			    return valueAt[4];
+			}
+			else {
+            	return valueAt[5];
+            }
+		}
+	}
+	else if (row == 3){
+			if (column == 1){
+			return valueAt[6];
+			else if (column == 2){
+			    return valueAt[7];
+			}
+			else {
+            	return valueAt[8];
+            }
+		}
+                			
+    }
   }
 
   /**
